@@ -219,3 +219,9 @@ Notice that the computer move is random every time.  The bot AI (such as it is) 
 # Task 18
 
 We are going to build some (very rudimentary) strategy into this turn-based strategy game.  At the moment, all the actors on the bot team will just move randomly.  Instead, we want their strategy to be determined by _which row they are on_.  If they are on an even-numbered then they should move randomly, but if they are on an odd-numbered row they should _always move to the left-most possible location_.  Note:  if it is not clear yet, you need the strategy pattern so implement this.  Why is is the right pattern for this task?
+
+🤔 Task 18a
+
+This task sits to the side of our other tasks. It is an experiment. Even after we get an answer, we won't build upon that answer in later tasks, i.e. we will use the Task 18 answer as the basis for Task 19. However, I think this is the most interesting task so far, it is certainly worth your time.
+
+Can we make the strategy pattern we just created disappear with lambda expressions? More concretely, can I get rid of the strategy interface and its subclasses and still have dynamic behaviour at run-time? If so, implement it and discuss the pros and cons of this approach compared to a "real" strategy pattern.
