@@ -37,6 +37,11 @@ public class StageReader {
             stage.actors.add(new Dog(c, human));
           } else if(value.equals("bird")) {
             stage.actors.add(new Bird(c, human));
+          } else if(value.equals("horse")) {
+            // Need to add some code to instantiate our `Horse` adapter
+            // Change the following as appropriate and uncomment
+            // so that we can see a `Horse` on screen:
+            // stage.actors.add(new Horse(c, human));
           }
         }
       }

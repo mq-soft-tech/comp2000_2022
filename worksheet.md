@@ -294,3 +294,10 @@ public class AnimationBeat {
 Notice that is implmenents a beat with three phases (`a`, `b`, and `c`) and that phase `a` goes for 5 seconds while phases `b` and `c` go for half-a second each.
 
 Your task is to incorporate this code into the project _using the most appropriate design pattern_ to do so.  You will need to make some changes to your colleague's code to ensure you match the pattern.  Then incorporate the animation beat somewhere in the application to demonstrate that it is working.
+
+# Task 22
+A collegue has provided you with a library as a [jar file](https://docs.oracle.com/javase/tutorial/deployment/jar/index.html). Jar files are a way of distributing a collection of already compiled java code. You can use the classes embedded in a jar file just as you would any class for which you have the source available.
+
+Your collegue's library contains only one class, called `Motif`.  This class allows you to load an image from a file and then draw it anywhere on the screen in the color of your choice (similar to a grayscale image, but any color can be chosen, not just gray).  An example of its use has been added to `Stage` (look for the instance variable called `torch`).
+
+We would like to use this class to add new player types to the game, however `Motif` is not a subclass of `Actor`.  Use the adapter pattern to add a new `Actor` type called `Horse`.  Note that because `Actor` is an abstract base class and not a Java interface it will be easier if you vary the pattern slightly from what is shown in the textbook.  You should use the image file located at `assets/Chess_tile_nl.png`.
