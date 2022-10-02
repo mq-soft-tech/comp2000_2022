@@ -66,6 +66,8 @@ public class Stage {
     final int labelIndent = margin + hTab;
     final int valueIndent = margin + 3*blockVT;
     yLoc = yLoc + 2*blockVT;
+    g.drawString(Character.toString(AnimationBeat.getInstance().inPhase()), labelIndent, yLoc);
+    g.drawString(Long.toString(AnimationBeat.getInstance().phaseCompletion()), valueIndent, yLoc);
     for(int i = 0; i < actors.size(); i++){
       Actor a = actors.get(i);
       yLoc = yLoc + 2*blockVT;
@@ -76,7 +78,7 @@ public class Stage {
       g.drawString(a.isHuman() ? "Human" : "Bot", valueIndent, yLoc+2*vTab);
       g.drawString("strategy:", labelIndent, yLoc+3*vTab);
       g.drawString(a.strat.toString(), valueIndent, yLoc+3*vTab);
-    }    
+    }
   }
 
   public List<Cell> getClearRadius(Cell from, int size) {
