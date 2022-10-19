@@ -21,12 +21,14 @@ public class StageReader {
   private static Actor makeActor(Cell loc, String desc, Actor.Player player) {
     Actor actor;
     BufferedImage img = images.get(desc);
+    int rate = Integer.valueOf(speed.get(desc));
+    int harm = Integer.valueOf(damage.get(desc));
     if(desc.equals("Cat")) {
-      actor = new Cat(loc, img, desc, player);
+      actor = new Cat(loc, img, desc, player, rate, harm);
     } else if(desc.equals("Dog")) {
-      actor = new Dog(loc, img, desc, player);
+      actor = new Dog(loc, img, desc, player, rate, harm);
     } else if(desc.equals("Bird")) {
-      actor = new Bird(loc, img, desc, player);
+      actor = new Bird(loc, img, desc, player, rate, harm);
     } else {
       actor = null;
       System.err.println("Unsupported Actor: " + desc);
@@ -38,10 +40,11 @@ public class StageReader {
   private static Item makeItem(Cell loc, String desc) {
     Item item;
     BufferedImage img = images.get(desc);
+    int value = Integer.valueOf(points.get(desc));
     if(desc.equals("Fish")) {
-      item = new Fish(loc, img, desc);
+      item = new Fish(loc, img, desc, value);
     } else if(desc.equals("Catnip")) {
-      item = new Catnip(loc, img, desc);
+      item = new Catnip(loc, img, desc, value);
     } else {
       item = null;
       System.err.println("Unsupported Item: " + desc);
@@ -82,6 +85,9 @@ public class StageReader {
   private static Map<String,String> items;
   private static Map<String,String> players;
   private static Map<String,String> enemies;
+  private static Map<String,String> speed;
+  private static Map<String,String> damage;
+  private static Map<String,String> points;
   private static List<String> worldMap;
 
   public static Stage buildStage(String path) {
@@ -195,6 +201,18 @@ public class StageReader {
     enemies = entries.get("Enemies");
     if(enemies == null) {
       fail("Stage file is missing [Enemies] section.");
+    }
+    speed = entries.get("Speed");
+    if(speed == null) {
+      fail("Stage file is missing [Speed] section.");
+    }
+    damage = entries.get("Damage");
+    if(damage == null) {
+      fail("Stage file is missing [Damage] section.");
+    }
+    points = entries.get("Points");
+    if(points == null) {
+      fail("Stage file is missing [Points] section.");
     }
     Map<String,String> mapLines = entries.get("World");
     if(mapLines == null) {

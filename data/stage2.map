@@ -1,0 +1,86 @@
+[Player]
+15,30=Cat
+[Enemies]
+10,8=Dog
+20,32=Dog
+15,18=Bird
+[Items]
+21,12=Fish
+16,28=Fish
+10,15=Catnip
+7,37=Catnip
+25,31=Catnip
+[Images]
+Cat=Cat.png
+Dog=Dog.png
+Bird=Bird.png
+Fish=Fish.png
+Catnip=Leaf.png
+Wall=Wall.png
+Fence=Fence.png
+Stone=Stone.png
+Water=Water.png
+Sand=Sand.png
+Grass=Grass.png
+[Speed]
+Dog=1
+Bird=2
+Cat=3
+[Damage]
+Cat=-5000
+Dog=50
+Bird=-500
+[Points]
+Fish=100
+Catnip=200
+[Symbols]
+Wall='='
+Fence='X'
+Stone='*'
+Water='~'
+Sand='#'
+Grass=' '
+[World]
+;  012345678901234567890123456789
+00=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+01=X                            X
+02=X      =                     X
+03=X      =                     X
+04=X      =                     X
+05=X      =                     X
+06=X      =                     X
+07=X      =                     X
+08=X      =                     X
+09=X      =                     X
+10=X      =                     X
+11=X      =~~~~~~~~~~~~~~~~~~~~ X
+12=X      =~~~~~~~~~~~~~~~~~~~~ X
+13=X      =~~~~~~~~~~~~~~~~~~~~ X
+14=X      ===================== X
+15=X      =######               X
+16=X      =======               X
+17=X      =                     X
+18=X      =                     X
+19=X      =                     X
+20=X      =                     X
+21=X      =                     X
+22=X      =                     X
+23=X                            X
+24=X***********##===============X
+25=X============~~**************X
+26=X*************~~=============X
+27=X==============~~************X
+28=X***************~~===========X
+29=X================~~**********X
+30=X*****************~~=========X
+31=X==================~~********X
+32=X*******************##=======X
+33=X                            X
+34=X                            X
+35=X  =========                 X
+36=X  =***=***=                 X
+37=X  =*=***=*=                 X
+38=X  =  = =  =                 X
+39=X  *********                 X
+40=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; end of map

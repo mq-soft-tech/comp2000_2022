@@ -5,16 +5,22 @@ public abstract class Item {
   static int size = Cell.size;
   private Cell loc;
   protected String desc;
-  protected BufferedImage image;
+  protected BufferedImage img;
+  protected int value;
+  protected boolean collected;
 
-  public Item(Cell l, BufferedImage i, String d) {
+  public Item(Cell l, BufferedImage i, String d, int v) {
     loc = l;
-    image = i;
+    img = i;
     desc = d;
+    value = v;
+    collected = false;
   }
 
   public void paint(Graphics g) {
-    g.drawImage(image, loc.x, loc.y, size, size, null);
+    if(!collected) {
+      g.drawImage(img, loc.x, loc.y, size, size, null);
+    }
   }
 
   public void setLocation(Cell inLoc) {
@@ -23,5 +29,13 @@ public abstract class Item {
 
   public Cell getLocation() {
     return loc;
+  }
+
+  public int getPoints() {
+    return value;
+  }
+
+  public void collect() {
+    collected = true;
   }
 }

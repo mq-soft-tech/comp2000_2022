@@ -8,11 +8,13 @@ public abstract class Actor {
   private Player player;
   int speed;
   int turns;
+  int damage;
+  int score;
   protected MoveStrategy strat;
   protected String desc;
   protected BufferedImage img;
 
-  public Actor(Cell l, BufferedImage i, String d, Player p, int s) {
+  public Actor(Cell l, BufferedImage i, String d, Player p, int s, int harm) {
     loc = l;
     img = i;
     player = p;
@@ -20,6 +22,7 @@ public abstract class Actor {
     desc = d;
     strat = new RandomMove();
     turns = speed;
+    damage = harm;
   }
 
   public void paint(Graphics g) {

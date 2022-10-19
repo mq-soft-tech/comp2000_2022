@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 public class Main extends JFrame {
   class Canvas extends JPanel implements MouseListener, KeyListener {
     Stage stage;
+    int stageno = 0;
+    final int maxstages = 2;
     public final Color background = Color.DARK_GRAY;
 
     public Canvas() {
@@ -22,13 +24,13 @@ public class Main extends JFrame {
       setDoubleBuffered(true);
       addKeyListener(this);
       setFocusable(true);
-      stage = StageReader.buildStage("data/stage1.map");
     }
 
     @Override
     public void paint(Graphics g) {
-      stage.update();
-      stage.paint(g);
+      if(stage != null) {
+          stage.paint(g);
+      }
     }
 
     @Override
@@ -83,18 +85,45 @@ public class Main extends JFrame {
   }
 
   public void run() {
-    while(true) {
-      Instant startTime = Instant.now();
-      canvas.repaint();
-      Instant endTime = Instant.now();
-      long howLong = Duration.between(startTime, endTime).toMillis();
-      try {
-        Thread.sleep(20l - howLong);
-      } catch (InterruptedException e) {
-        System.out.println("thread was interrupted, but who cares?");
-      } catch (IllegalArgumentException e) {
-        System.out.println("application can't keep up with framrate");
+    // Re-draw the screen 50 times per second
+    Thread paintThread = new Thread(() -> {
+      while(true) {
+        Instant startTime = Instant.now();
+        if(canvas.stage != null) {
+          canvas.repaint();
+        }
+        Instant endTime = Instant.now();
+        long howLong = Duration.between(startTime, endTime).toMillis();
+        doSleep(20l - howLong);
       }
+    });
+    paintThread.start();
+
+    Instant startUpdate;
+    Instant endUpdate;
+    long updateDuration;
+    while(true) {
+      // Build stage
+      if(canvas.stage == null || canvas.stage.cleared) {
+        canvas.stageno = (canvas.stageno % canvas.maxstages) + 1;
+        String stagefile = "data/stage" + Integer.toString(canvas.stageno) + ".map";
+        canvas.stage = StageReader.buildStage(stagefile);
+        canvas.stage.cleared = false;
+      }
+      // Check user input every 15ms
+      startUpdate = Instant.now();
+      canvas.stage.update();
+      endUpdate = Instant.now();
+      updateDuration = Duration.between(startUpdate, endUpdate).toMillis();
+      doSleep(15l - updateDuration);
+    }
+  }
+
+  private void doSleep(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
   }
 }

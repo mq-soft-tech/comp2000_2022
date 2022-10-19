@@ -23,6 +23,17 @@ Stone=Stone.png
 Water=Water.png
 Sand=Sand.png
 Grass=Grass.png
+[Speed]
+Dog=1
+Bird=2
+Cat=3
+[Damage]
+Cat=-5000
+Dog=50
+Bird=-500
+[Points]
+Fish=100
+Catnip=200
 [Symbols]
 Wall='='
 Fence='X'
